@@ -1,0 +1,38 @@
+def decimal_to_binary():
+  decimal = int(input("Enter your decimal number here: "))
+  binary = []
+  while decimal >= 1:
+    if decimal % 2 == 0:
+      decimal = int(decimal / 2)
+      binary.append("0")
+    elif decimal % 2 != 0:
+      decimal = int(decimal / 2)
+      binary.append("1")
+  binary.reverse()
+  binary_string_form = "".join(binary) 
+  return binary_string_form
+def binary_to_decimal():
+  binary = list(input("Enter a binary number here: "))
+  decimal = 0
+  multiplier = 1
+  binary_modded = [0 for num in binary]
+  for digit in range(len(binary_modded)):
+    binary_modded[digit] = multiplier
+    multiplier += multiplier
+  binary_modded.reverse()
+  new_binary = list(zip(binary, binary_modded))
+  for number in range(len(new_binary)):
+    if new_binary[number - 1][0] == "1":
+      decimal += new_binary[number -1][1]
+  return decimal
+more_calculations = "y"
+while more_calculations == "y":
+  operation = input("What do you want to convert?\n binary to decimal(press 1)\n decimal to binary(press 2): ")
+  if operation == "1":
+    print(binary_to_decimal())
+  elif operation == "2":
+    print(decimal_to_binary())
+  else:
+    print("I'm sorry, I didn't understand. enter '1' or '2'.")
+    operation = input("What do you want to convert?\n binary to decimal(press 1)\n decimal to binary(press 2): ")
+  more_calculations = input("Do you want to do more translations? (y/n): ") 
